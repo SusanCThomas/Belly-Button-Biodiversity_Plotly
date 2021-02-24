@@ -125,3 +125,49 @@ d3.json("data/samples.json").then((incomingData) => {
         // Plot 3: Gauge Chart
         var wfreq = defaultDemographic.wfreq;
         console.log(wfreq);
+
+        // Create the data array for the plot
+        var datagauge = [
+            {
+                type: "indicator",
+                marker: { size: 28, color: '850000' },
+                title: "<b>Belly Button Washing Frequency</b> <br> Scrubs per Week",
+                value: wfreq,
+                domain: { x: [0, 1], y: [0, 1] },
+                mode: "gauge+number",
+                gauge: {
+                    text: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1'],
+                    textinfo: 'text',
+                    textposition: 'inside',
+                    axis: { range: [null, 9] },
+                    bar: { color: "darkgreen" },
+                    steps: [
+                        { range: [0, 1], color: 'rgb(248, 243, 236)' },
+                        { range: [1, 2], color: 'rgb(244, 241, 229)' },
+                        { range: [2, 3], color: 'rgb(233, 230, 202)' },
+                        { range: [3, 4], color: 'rgb(229, 231, 179)' },
+                        { range: [4, 5], color: 'rgb(213, 228, 157)' },
+                        { range: [5, 6], color: 'rgb(183, 204, 146)' },
+                        { range: [6, 7], color: 'rgb(140, 191, 136)' },
+                        { range: [7, 8], color: 'rgb(138, 187, 143)' },
+                        { range: [8, 9], color: 'rgb(133, 180, 138)' },
+                    ],
+                }
+            }
+        ];
+
+        // Define the plot layout
+        var layoutgauge = {
+            width: 600,
+            height: 400,
+            margin: {
+                t: 0,
+                b: 0,
+            }
+        };
+
+        // Plot the "gauge" chart 
+        Plotly.newPlot('gauge', datagauge, layoutgauge);
+    };
+    init();
+});
