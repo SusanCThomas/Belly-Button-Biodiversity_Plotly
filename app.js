@@ -101,7 +101,7 @@ d3.json("data/samples.json").then((incomingData) => {
         // Plot the "bubble" chart 
         Plotly.newPlot('bubble', databubble, layoutbubble);
 
-// 4. Display the sample metadata, i.e., an individual's demographic information.
+g// 4. Display the sample metadata, i.e., an individual's demographic information.
 
         // Filtering Demographic information 
         defaultDemographic = data.metadata.filter(sample => parseInt(sample.id) === 940)[0];
@@ -200,3 +200,41 @@ function optionChanged() {
     top10Values = idSampleValues.slice(0, 10).reverse();
     top10Ids = idOtuIds.slice(0, 10).reverse();
     top10Labels = idOtuLabels.slice(0, 10).reverse();
+
+// 6. Update all of the plots any time that a new sample is selected.
+    // Plot 1: Bar Chart
+    Plotly.restyle("bar", "x", [top10Values]);
+    Plotly.restyle("bar", "y", [top10Ids.map(outId => `OTU ${outId}`)]);
+    Plotly.restyle("bar", "text", [top10Labels]);
+
+    // Plot 2: Bubble Chart
+    Plotly.restyle('bubble', "x", [idOtuIds]);
+    Plotly.restyle('bubble', "y", [idSampleValues]);
+    Plotly.restyle('bubble', "text", [idOtuLabels]);
+    Plotly.restyle('bubble', "market.color", [idOtuIds]);
+    Plotly.restyle('bubble', "marker.size", [idSampleValues]);
+
+    // Demographic information
+    DemoInfo = data.metadata.filter(sample => sample.id === parseInt(inputValue))[0];
+    console.log(data.metadata);
+
+    // Getting a reference to the table using d3
+    var panelBody = d3.select("#sample-metadata");
+    // Clear out current contents in the panel
+    panelBody.html("");
+    // Using d3 to append table row to `p` for each metadata
+    var row = panelBody.append("p");
+    // Using the `Object.entries` to console.log each metadata
+    Object.entries(DemoInfo).forEach(([key, value]) => {
+        console.log(key, value);
+        // Append a cell to the row for each value
+        var cell = row.append("p");
+        cell.text(`${key.toUpperCase()}: ${value}`);
+    });
+
+    // Plot 3: Gauge chart
+    var advancedwfreq = DemoInfo.wfreq;
+
+    Plotly.restyle('gauge', "value", advancedwfreq);
+};
+d3.selectAll("body").on("change", optionChanged);
