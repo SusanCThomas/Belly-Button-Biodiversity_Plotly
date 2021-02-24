@@ -100,3 +100,25 @@ d3.json("data/samples.json").then((incomingData) => {
 
         // Plot the "bubble" chart 
         Plotly.newPlot('bubble', databubble, layoutbubble);
+
+// 4. Display the sample metadata, i.e., an individual's demographic information.
+
+        // Filtering Demographic information 
+        defaultDemographic = data.metadata.filter(sample => parseInt(sample.id) === 940)[0];
+        console.log(defaultDemographic);
+
+        // Getting a reference to the table using d3
+        var panelBody = d3.select("#sample-metadata");
+        panelBody.html("");
+        // Using d3 to append table row to `p` for each metadata
+        var row = panelBody.append("p");
+        // Using the `Object.entries` to console.log each metadata
+        Object.entries(defaultDemographic).forEach(([key, value]) => {
+            console.log(key, value);
+            // Append a cell to the row for each value
+            var cell = row.append("p");
+            cell.text(`${key.toUpperCase()}: ${value}`);
+        });
+
+        // Advanced Challenge Assignment (Optional)
+        // Please see bonus.js for alternative bonus gauge code matching given screenshot
