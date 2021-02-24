@@ -120,5 +120,8 @@ d3.json("data/samples.json").then((incomingData) => {
             cell.text(`${key.toUpperCase()}: ${value}`);
         });
 
-        // Advanced Challenge Assignment (Optional)
-        // Please see bonus.js for alternative bonus gauge code matching given screenshot
+// Advanced Challenge Assignment (Optional)
+// Please see bonus.js for alternative bonus gauge code matching given screenshot
+        // Plot 3: Gauge Chart
+        var wfreq = defaultDemographic.wfreq;
+        console.log(wfreq);
