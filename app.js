@@ -68,3 +68,35 @@ d3.json("data/samples.json").then((incomingData) => {
 
         // Plot the "bar" chart 
         Plotly.newPlot("bar", databar, layoutbar);
+
+// 3. Create a bubble chart that displays each sample.
+        // Plot 2: Bubble Chart
+        //  Create the Traces
+        var trace2 = {
+            x: defaultotuids,
+            y: defaultSampleValues,
+            text: defaultotulabels,
+            mode: 'markers',
+            marker: {
+                color: defaultotuids,
+                colorscale: "Rainbow",
+                size: defaultSampleValues,
+            },
+        };
+
+        // Create the data array for the plot
+        var databubble = [trace2];
+
+        // Define the plot layout
+        var layoutbubble = {
+            title: 'Sample Display',
+            xaxis: { title: "OTU IDs" },
+            yaxis: { title: "Sample Value" },
+            sizemode: "area",
+            showlegend: false,
+            height: 600,
+            width: 1200,
+        };
+
+        // Plot the "bubble" chart 
+        Plotly.newPlot('bubble', databubble, layoutbubble);
