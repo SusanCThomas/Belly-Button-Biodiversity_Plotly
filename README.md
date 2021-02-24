@@ -8,6 +8,6 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 ## [Interactive Dashboard](https://susancthomas.github.io/Belly-Button-Dashboard/)
 
-Created an interactive dashboard that displays a bar plot, bubble and gauge plot as well as demogrpahic information of any Test Subject ID that the user selects.
+Created an interactive dashboard that displays a bar plot, bubble and gauge plot as well as demographic information of any Test Subject ID that the user selects.
 
 ![Dashboard](Images/My_Dashboard.png)
