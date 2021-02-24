@@ -10,4 +10,4 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 Created an interactive dashboard that displays a bar plot, bubble and gauge plot as well as demogrpahic information of any Test Subject ID that the user selects.
 
-
+![Dashboard](Images/Screen Shot 2021-02-24 at 2.03.02 AM.png)
