@@ -171,3 +171,32 @@ d3.json("data/samples.json").then((incomingData) => {
     };
     init();
 });
+
+// 5. Display each key-value pair from the metadata JSON object somewhere on the page.
+// Call optionChanged() when a change takes place to select different subject text id
+// Function called when dropdown menue items are selected
+function optionChanged() {
+    // // Use D3 to select the dropdown menu
+    var inputElement = d3.select("#selDataset");
+
+    // // Getting the value property of the input element
+    var inputValue = inputElement.property("value");
+    console.log(inputValue);
+
+    // Use the form input to filter the dataset by id
+    var filteredData = data.samples.filter((sample) => sample.id === inputValue)[0];
+    console.log(filteredData);
+
+    // Selected test id sample_values
+    idSampleValues = filteredData.sample_values;
+
+    // Select test id otu_ids
+    idOtuIds = filteredData.otu_ids;
+
+    // Select test id otu_labels
+    idOtuLabels = filteredData.otu_labels;
+
+    // Select the top 10 OTUs
+    top10Values = idSampleValues.slice(0, 10).reverse();
+    top10Ids = idOtuIds.slice(0, 10).reverse();
+    top10Labels = idOtuLabels.slice(0, 10).reverse();
