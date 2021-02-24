@@ -42,3 +42,29 @@ d3.json("data/samples.json").then((incomingData) => {
         console.log(sampleValues);
         console.log(sampleotuids);
         console.log(sampleotulabels);
+
+        // Plot 1: Bar Chart
+        //  Create the Traces
+        var trace1 = {
+            x: sampleValues,
+            y: sampleotuids.map(outId => `OTU ${outId}`),
+            text: sampleotulabels,
+            type: "bar",
+            orientation: "h",
+        };
+
+        // Create the data array for the plot
+        var databar = [trace1];
+
+        // Define the plot layout
+        var layoutbar = {
+            title: "Top 10 UTOs",
+            xaxis: { title: "Sample Values" },
+            yaxis: { title: "OTU IDs" },
+            autosize: false,
+            width: 500,
+            height: 600,
+        }
+
+        // Plot the "bar" chart 
+        Plotly.newPlot("bar", databar, layoutbar);
